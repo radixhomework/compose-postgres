@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "${PG_PORT}:5432"
+    volume:
+      - "data:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - "${ADMINER_PORT}:8080"
+
+volumes:
+  data:
+  
